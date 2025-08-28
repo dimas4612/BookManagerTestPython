@@ -19,7 +19,7 @@ class TestBookManager(unittest.TestCase):
 
         removed = self.book_manager.remove_book("Basis Data")
         self.assertTrue(removed)
-        self.assertEqual(0, self.book_manager.get_book_count())  # Diperbaiki dari 'o' menjadi '0'
+        self.assertEqual(0, self.book_manager.get_book_count())
 
     # Unit Test dibawah untuk buku yang tidak terdapat pada list
     def test_remove_non_existing_book(self):
