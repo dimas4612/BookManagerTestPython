@@ -2,7 +2,7 @@ from typing import List
 from book import Book
 
 class BookManager:
-    def __init__(self):   # ✅ perbaikan dari _init_ ke __init__
+    def __init__(self):
         self.books = []
 
     def add_book(self, book: Book) -> None:
