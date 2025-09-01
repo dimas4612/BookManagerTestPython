@@ -19,8 +19,7 @@ class TestBookManager(unittest.TestCase):
 
         removed = self.book_manager.remove_book("Basis Data")
         self.assertTrue(removed)
-        self.assertEqual(0, self.book_manager.get_book_count())  # Diperbaiki dari 'o' menjadi '0'
-
+        self.assertEqual(0, self.book_manager.get_book_count()) 
     # Unit Test dibawah untuk buku yang tidak terdapat pada list
     def test_remove_non_existing_book(self):
         """Test menghapus buku yang tidak ada"""
@@ -58,6 +57,28 @@ class TestBookManager(unittest.TestCase):
         self.assertEqual(2, len(all_books))
         self.assertIn(book1, all_books)
         self.assertIn(book2, all_books)
+
+     # Unit Test tambahan untuk menambah buku yang sama (duplikat)
+    def test_add_duplicate_book(self):
+        """Test menambahkan buku duplikat"""
+        book = Book("Pemrograman", "Andi", 2020)
+        self.book_manager.add_book(book)
+        self.book_manager.add_book(book)  # tambah duplikat
+        self.assertEqual(2, self.book_manager.get_book_count())  # tetap dihitung 2
+
+    # Unit Test tambahan untuk mencari penulis yang tidak ada
+    def test_find_books_by_non_existing_author(self):
+        """Test mencari buku dengan author yang tidak ada"""
+        book = Book("Pemrograman", "Andi", 2020)
+        self.book_manager.add_book(book)
+        result = self.book_manager.find_books_by_author("Penulis Tidak Ada")
+        self.assertEqual(0, len(result))
+
+    # Unit Test tambahan untuk mengecek koleksi buku kosong
+    def test_initial_book_count_is_zero(self):
+        """Test jumlah buku saat awal inisialisasi"""
+        count = self.book_manager.get_book_count()
+        self.assertEqual(0, count)
 
 if __name__ == '_main_':
     unittest.main()
